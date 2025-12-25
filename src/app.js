@@ -8,7 +8,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: true,
+    origin: "https://eloquent-arithmetic-3ed087.netlify.app",
     credentials: true,
   })
 );

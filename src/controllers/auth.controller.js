@@ -24,7 +24,13 @@ const registerUser = async (req, res) => {
     password: hashedPassword,
   });
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-  res.cookie("token", token);
+  res.cookie("token", token,{
+  httpOnly: true,
+  secure: true,        // 🔥 REQUIRED (HTTPS)
+  sameSite: "none",    // 🔥 REQUIRED (cross-site)
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  path: "/",      
+});
   res.status(201).json({
     message: "User register successfully",
     user: {
@@ -55,7 +61,13 @@ const loginUser = async (req, res) => {
     });
   }
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-  res.cookie("token", token);
+  res.cookie("token", token,{
+  httpOnly: true,
+  secure: true,        // 🔥 REQUIRED (HTTPS)
+  sameSite: "none",    // 🔥 REQUIRED (cross-site)
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  path: "/",
+});
   res.status(200).json({
     message: "User logged in successfully",
     user: {
@@ -94,7 +106,13 @@ const registerFoodPartner = async (req, res) => {
     password: hashedPassword,
   });
   const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET);
-  res.cookie("token", token);
+  res.cookie("token", token,{
+  httpOnly: true,
+  secure: true,        // 🔥 REQUIRED (HTTPS)
+  sameSite: "none",    // 🔥 REQUIRED (cross-site)
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  path: "/",
+});
   res.status(201).json({
     message: "Account created successfully",
     foodPartner: {
@@ -125,7 +143,13 @@ const loginFoodPartner = async (req, res) => {
     });
   }
   const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET);
-  res.cookie("token", token);
+  res.cookie("token", token,{
+  httpOnly: true,
+  secure: true,        // 🔥 REQUIRED (HTTPS)
+  sameSite: "none",    // 🔥 REQUIRED (cross-site)
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  path: "/",
+});
   res.status(200).json({
     message: "Food partner logged in successfully",
     user: {
