@@ -5,6 +5,8 @@ const connectDB = require("./src/db/db");
 
 connectDB();
 
-app.listen(3200,()=>{
+const PORT = process.env.PORT || 3200;
+
+app.listen(PORT,()=>{
     console.log("Server is running on port 3200");
 });
